@@ -15,6 +15,12 @@ jobs:
       - run:
           command: pytest
           name: Test
+      - run:
+          command: |
+            python captchacracker/serving/serving.py &
+            sleep 5
+            curl -X POST "http://localhost:5000" -F "image=@tests/assets/test.png"
+          name: Test serving
   build-and-test-win:
     executor: win/default # executor type
     steps:
@@ -32,6 +38,12 @@ jobs:
       - run:
           command: pytest
           name: Test
+      - run:
+          command: |
+            Start-Process -NoNewWindow python captchacracker/serving/serving.py
+            Start-Sleep -s 5
+            curl -Method POST http://localhost:5000 -Body image=@tests/assets/test.png
+          name: Test serving
 
 workflows:
   main:

@@ -95,8 +95,8 @@ This command will run a [Flask](https://flask.palletsprojects.com/en/1.1.x/) ser
 After the server is ready, you can use [`curl`](https://curl.se/) command to use this model:
 
 ```shell
-curl -X POST 'http://localhost:5000' \
-  -F 'image=@tests/assets/test.png'
+curl -X POST "http://localhost:5000" \
+  -F "image=@tests/assets/test.png"
 ```
 
 The response should be:
